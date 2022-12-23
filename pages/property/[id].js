@@ -4,7 +4,6 @@ import { FaBed, FaBath } from 'react-icons/fa'
 import { BsGridFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go'
 import millify from 'millify';
-// import defaultImage from '../assets/images/house.jpg'
 import { baseUrl, fetchApi } from '../../utils/fetchApi';
 import ImageScrollbar from '../../components/ImageScrollbar';
 const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, baths, title, area, agency, isVerified, description, type, purpose, furnishingStatus, amenities, photos } }) => {
@@ -31,7 +30,27 @@ const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, baths
                         <Text>type</Text>
                         <Text fontWeight='bold'>{type}</Text>
                     </Flex>
+                    <Flex justifyContent={'space-between'} w='400px' borderBottom={'1px'} borderColor='gray.100' p='3'>
+                        <Text>purpose</Text>
+                        <Text fontWeight='bold'>{purpose}</Text>
+                    </Flex>
+                    {furnishingStatus && (
+                        <Flex justifyContent={'space-between'} w='400px' borderBottom={'1px'} borderColor='gray.100' p='3'>
+                        <Text>Furnishing Status</Text>
+                        <Text fontWeight='bold'>{furnishingStatus}</Text>
+                    </Flex>
+                    )}
                 </Flex>
+                <Box>
+                    {amenities.length && <Text fontSize='2xl' fontWeight='bold' marginTop={5}>Amenities</Text>}
+                    <Flex flexWrap='wrap'>
+                        {amenities.map((item)=>(
+                            item.amenities.map((amenity)=>(
+                                <Text fontWeight='bold' color='blue.400' fontSize={'lg'} p='2' m='1' borderRadius={5} bg='gray.200' key={amenity.text}>{amenity.text}</Text>
+                            ))
+                        ))}
+                    </Flex>
+                </Box>
             </Box>
         </Box>
     )
